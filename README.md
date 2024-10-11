@@ -30,7 +30,7 @@ Raw = pd.read_csv('C:/VS Code/data/swedish_insurance.csv')
 df = Raw.rename(columns={'X': 'No_Of_Claims', 'Y': 'Claims_Total'})
 print(df.head())
 ```
-INSERT PICTURE OF TABLE HEAD
+![image](https://github.com/user-attachments/assets/45cc6617-6910-4fe1-b7d0-26f0107b9d24)
 
 
 ### Testing Correlation Between Variables
@@ -55,7 +55,8 @@ plt.title('Scatter Plot of No_Of_Claims vs Claims_Total')
 plt.xlabel('No_Of_Claims')
 plt.ylabel('Claims_Total')
 ```
-INSERT SCATTER PLOT!!! \
+![image](https://github.com/user-attachments/assets/1e9fef6b-5dc8-45ff-85b7-6132cd40cf11)
+
 We plot a scatter graph to visually inspect the relationship between No_Of_Claims and Claims_Total. The positive trend suggests that these two variables are likely linearly related.
 
 ###  Boxplot for No_Of_Claims and Claims_Total
@@ -70,8 +71,9 @@ plt.xticks(ticks=[0, 1], labels=['No_Of_Claims', 'Claims_Total'])
 plt.show()
 
 ```
-INSERT BOX PLOT!!! \
-\ We create boxplots for both variables to observe their distribution and detect any outliers.
+![image](https://github.com/user-attachments/assets/237223d4-2955-47ad-9237-f5c35372040a)
+
+We create boxplots for both variables to observe their distribution and detect any outliers.
 
 ### Histogram for Distribution of Columns
 
@@ -85,7 +87,8 @@ sns.histplot(df['Claims_Total'], kde=True)
 plt.tight_layout()
 plt.show()
 ```
-INSERT Histogram PLOT!!! n\
+![image](https://github.com/user-attachments/assets/684eb36b-5cff-4e58-b91e-36b474bbd4a6)
+
 Histograms are created to visualize the distribution of the No_Of_Claims and Claims_Total
 
 ## Building the Model
@@ -114,7 +117,9 @@ r2_score = model.score(X_test, Y_test)
 print(f'R^2 Score: {r2_score * 100:.2f}%')
 
 ```
-SHOW R2 VALUE AND DISCRIBE WHAT IT MEANS
+![image](https://github.com/user-attachments/assets/a0d6e0a4-0d54-4a2e-baf6-a05a7ff9e893)
+
+This means that 89.51% of the variability in the outcome can be explained by our predictors in the model. In other words, the model is quite good at explaining the variation in the data, as most of the changes in the outcome are captured by the independent variables.
 
 ### Calculating MAE and RMSE
 We also compute the Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE) to further evaluate the model's accuracy.
@@ -124,10 +129,13 @@ rmse = np.sqrt(mean_squared_error(Y_test, y_pred))
 print(f'Mean Absolute Error: {mae}')
 print(f'Root Mean Squared Error: {rmse}')
 ```
-SHOW MAE MSE VALUE AND DISCRIBE WHAT IT MEANS
+![image](https://github.com/user-attachments/assets/8c7b24ae-26b4-401f-9fbc-1e50e0bb3b7d)
 
-### Visualizing the Regression Line
-We plot the original data points alongside the regression line, which is derived from the model’s predictions.
+Given that our MAE is 26.41, this indicates that, on average, the absolute error between our predicted values and actual values is around 26.41. This suggests that while there is some error in our predictions, it is within a reasonable range considering the nature of the data and the magnitude of the target values.
+Furthermore, our RMSE is approximately 29.58. Since RMSE squares the errors, it penalizes larger deviations more heavily, making it more sensitive to outliers. The fact that our RMSE is only slightly higher than our MAE suggests that there are no significant outliers disproportionately affecting the model’s performance
+
+### Visualising the Regression Line
+Plot the original data points alongside the regression line, which is derived from the model’s predictions.
 
 ```python
 y_pred_full = model.predict(df[['No_Of_Claims']])
@@ -139,20 +147,44 @@ plt.title('Original Data vs Predicted Line')
 plt.show()
 
 ```
+![image](https://github.com/user-attachments/assets/3f9c5652-aff7-44d3-b228-0aabba2f95be)
 
-### Predicting Claims for a Specific Number of Claims
-
+### Predicting Claims Total (£) for a Specific Number of Claims
+Using our model to predict outcomes:
 
 ```python
-random_x_value = float(input("Enter a value for No_Of_Claims: "))
-random_x = [[35]]  # Example input
+slope = model.coef_[0]
+intercept = model.intercept_
+
+# Print the slope and intercept
+print(f"Slope of the regression line: {slope}")
+print(f"Intercept of the regression line: {intercept}")
+
+# Predict y for a random x value, say x = 35
+random_x = [[35]]  # Input must be 2D for sklearn's predict method
 predicted_y = model.predict(random_x)
+
 print(f"Predicted Claims_Total for No_Of_Claims = 35: {predicted_y[0]}")
 
 ```
+![image](https://github.com/user-attachments/assets/41d40a37-f199-4e05-9b90-e3ca05576235)
 
-
-
+Using the equation 
+𝑌_predict=16.75+3.43×𝑋1
+=16.75+3.43×X1
+​where the intercept is approximately 16.75 and the coefficient for the number of claims is 3.43, we can predict the total claims amount. When we input 35 for 𝑋1 (No_Of_Claims), we get an estimated Claims_Total of around £136.80.
 
 ## Conclusion
+
+Here’s a concise conclusion for your linear regression model:
+
+---
+
+**Conclusion:**
+
+The linear regression model developed to predict total claims based on the number of claims shows a strong positive relationship between the two variables. With an R² score of approximately 89.51%, the model explains a significant proportion of the variance in the total claims, indicating that the number of claims is a key predictor of the total claims amount.
+
+The Mean Absolute Error (MAE) of 26.41 and Root Mean Squared Error (RMSE) of 29.58 indicate that, on average, our predictions deviate from the actual values by around 26.41, with no significant impact from outliers. This suggests that the model is robust and provides reasonably accurate predictions, especially for this type of insurance data.
+
+Additionally, the model’s equation 𝑌_predict=16.75+3.43×(No_Of_Claims) allows for practical predictions, as demonstrated by an estimate of approximately £136.80 for 35 claims. Overall, this model serves as a valuable tool for predicting total claims based on the number of claims, though further refinements or the inclusion of additional variables may improve its performance.
 

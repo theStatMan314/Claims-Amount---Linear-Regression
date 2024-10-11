@@ -1,4 +1,3 @@
-
 ## Linear Regression Project
 
 
@@ -178,7 +177,6 @@ Using the equation
 ​where the intercept is approximately 16.75 and the coefficient for the number of claims is 3.43, we can predict the total claims amount. When we input 35 for 𝑋1 (No_Of_Claims), we get an estimated Claims_Total of around £136.80.
 
 ## Conclusion
-
 The linear regression model developed to predict total claims based on the number of claims shows a strong positive relationship between the two variables. With an R² score of approximately 89.51%, the model explains a significant proportion of the variance in the total claims, indicating that the number of claims is a key predictor of the total claims amount.
 
 The Mean Absolute Error (MAE) of 26.41 and Root Mean Squared Error (RMSE) of 29.58 indicate that, on average, our predictions deviate from the actual values by around 26.41, with no significant impact from outliers. This suggests that the model is robust and provides reasonably accurate predictions, especially for this type of insurance data.

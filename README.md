@@ -1,6 +1,6 @@
-<<<<<<< HEAD
+
 ## Linear Regression Project
-=======
+
 
 # Simple Linear Regression
 
@@ -179,16 +179,9 @@ Using the equation
 
 ## Conclusion
 
-Here’s a concise conclusion for your linear regression model:
-
----
-
-**Conclusion:**
-
 The linear regression model developed to predict total claims based on the number of claims shows a strong positive relationship between the two variables. With an R² score of approximately 89.51%, the model explains a significant proportion of the variance in the total claims, indicating that the number of claims is a key predictor of the total claims amount.
 
 The Mean Absolute Error (MAE) of 26.41 and Root Mean Squared Error (RMSE) of 29.58 indicate that, on average, our predictions deviate from the actual values by around 26.41, with no significant impact from outliers. This suggests that the model is robust and provides reasonably accurate predictions, especially for this type of insurance data.
 
 Additionally, the model’s equation 𝑌_predict=16.75+3.43×(No_Of_Claims) allows for practical predictions, as demonstrated by an estimate of approximately £136.80 for 35 claims. Overall, this model serves as a valuable tool for predicting total claims based on the number of claims, though further refinements or the inclusion of additional variables may improve its performance.
 
->>>>>>> 05d216fe64e2f9cec176466c2202a6b70a9119e7
